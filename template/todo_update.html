@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-4 offset-4">
+    <a href="/" class="btn btn-primary mt-3">Home</a>
+    <h4 style="margin:10px">Update Todo</h4>
+    <form method="POST">
+        {% csrf_token%}
+        {{form.as_p }}
+        <button class="btn btn-primary" type="submit">Update</button>
+
+    </form>
+</div>
+    
+{%endblock%}

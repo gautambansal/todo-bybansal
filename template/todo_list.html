@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <p class = "text-center">
+    {% if request.user.is_authenticated %}
+    Hello {{request.user.username}}
+    {% else %}
+        Hello annonymous
+    {% endif %}
+    <br>
+    <a class="btn btn-primary" href="/create">Add a Task</a>
+    </p>
+    
+    <div class="col-4 offset-4">
+        {% for todo in todo_list %}
+        <div class="card mt-3">
+            <div class="card-header">
+                <a href="/{{todo.id}}"><h4>{{todo.name}}</h4></a>
+            </div>
+            <div class="card-body">
+                <p>
+                    Deadline :  {{todo.due_date}}
+                </p>
+            </div>
+            <div class="card-footer" style="display:inline-block">
+                <a href="/{{todo.id}}/delete/" class="btn btn-secondary ">Delete this</a>
+                <a href="/{{todo.id}}/update/" class="btn btn-secondary ">Update this</a>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
